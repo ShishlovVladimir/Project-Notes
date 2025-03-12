@@ -1,0 +1,136 @@
+/* ОБНУЛЕНИЕ СТИЛЕЙ */
+/* *,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+} */
+
+li {
+	list-style: none;
+}
+
+a,
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+/* h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: inherit;
+	font-size: inherit;
+} */
+
+img {
+	vertical-align: top;
+}
+
+html,
+body {
+	height: 100%;
+	/* background: #333; */
+}
+
+html {
+	font-family: serif;
+	font-size: 16px; /* по умолчанию */
+}
+
+body {
+	line-height: 1;
+}
+
+.wrapper {
+	font-family: serif;
+	background-color: #72bdbd;
+	min-height: 100%;
+	overflow: hidden;
+}
+
+.notes {
+	padding: 0px 40px;
+	display: flex;
+	flex-direction: column;
+	display: flex;
+	flex-direction: column;
+}
+
+.notes-header {
+	display: flex;
+	gap: 50px;
+}
+.notes-header__title {
+}
+.notes-header__text {
+	font-weight: 500;
+	line-height: 1.5;
+	font-size: 18px;
+}
+.notes-header__count {
+	font-size: 20px;
+}
+.notes__form {
+}
+.form {
+	display: flex;
+	flex-direction: column;
+}
+.form__label {
+}
+.form__title {
+	width: 250px;
+}
+.form__description {
+	width: 300px;
+}
+.form__button {
+	width: 200px;
+}
+
+.notes__list {
+	display: flex;
+	gap: 20px;
+}
+
+/*-----------Классы на лишку------------------*/
+.list__item {
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	border: 3px solid #f3db7d;
+	background-color: aliceblue;
+}
+.list__item-header {
+	display: flex;
+	justify-content: space-between;
+	background-color: #f3db7d;
+}
+.list__delete-button {
+}
+.list__favorites-button {
+}
+.list__title {
+}
+.list__description {
+}
+/*-------Классы на сообщения-----------------*/
+.success {
+	color: green;
+}
+.error {
+	color: red;
+}
+.done{
+
+}

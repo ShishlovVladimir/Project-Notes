@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>Notes</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<section class="notes">
+				<header class="notes-header">
+					<h1 class="notes-header__title">NOTES</h1>
+					<p class="notes-header__text">Всего заметок: <span class="notes-header__count count"></span></p>
+				</header>
+				<form class="notes__form form" action="#">
+					<label class="form__label" for="notetitle">Название заметки</label>
+					<input
+						class="form__title"
+						type="text"
+						name="notetitle"
+						id="notetitle"
+						placeholder="Напишите название новой заметки..."
+					/>
+					<label class="form__label" for="textarea">Описание новой заметки</label>
+					<textarea
+						class="form__description"
+						name="notedescription"
+						id="textarea"
+						placeholder="Напишите описание новой заметки..."
+					></textarea>
+					<button class="form__button" type="submit">Добавить заметку</button>
+				</form>
+				<ul class="notes__list list"></ul>
+				<div class="note__message-box"></div>
+			</section>
+		</div>
+		<script src="js/script.js"></script>
+	</body>
+</html>
