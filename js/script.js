@@ -70,9 +70,14 @@ const view = {
       notesHTML = `
         <li id="${note.id}" class="list__item ">
           <div class="list__item-header">
-			 <p class="list__title">${note.title}</p>
-			 <button class="list__favorites-button" type="button"><img class="${note.favorites ? "done" : ""}"  src="../img/heart_desable.svg" alt="heart" ></button>
-          	 <button class="list__delete-button" type="button"><img  src="../img/delete.svg" alt="heart" ></button>
+            <p class="list__title">${note.title}</p>
+            <div class="list__buttons">
+              <button class="list__favorites-button" type="button">
+                <img class="${note.favorites ? "hidden" : ""}"  src="../img/heart_desable.svg" alt="heart" >
+                <img class="${note.favorites ? "" : "hidden"}"  src="../img/heart_active.svg" alt="black heart">
+              </button>
+              <button class="list__delete-button" type="button"><img  src="../img/delete.svg" alt="heart" ></button>
+            </div>
           </div>
           <p class="list__description">${note.description}</p>
         </li>
@@ -82,13 +87,12 @@ const view = {
     notesHTML = arrayElementsList.join("");
 
     list.innerHTML = notesHTML;
-
+    
     if (list.innerHTML === ``) {
       list.innerHTML = `У вас ещё нет ни одной заметки. Заполните поля выше и создайте свою первую заметку!`;
     }
 
-    // Обновляем счетчик
-
+    // Счетчик
     const countNotes = document.querySelector(".count");
     countNotes.textContent = ``;
 

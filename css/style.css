@@ -59,7 +59,7 @@ body {
 }
 
 .notes {
-	padding: 0px 40px;
+	padding: 0 40px;
 	display: flex;
 	flex-direction: column;
 	display: flex;
@@ -98,15 +98,19 @@ body {
 	width: 200px;
 }
 
+
+/*-----------Классы на список------------------*/
 .notes__list {
+
+}
+.list{
 	display: flex;
 	gap: 20px;
 }
-
-/*-----------Классы на лишку------------------*/
 .list__item {
 	display: flex;
 	flex-direction: column;
+	flex: 0 0 250px;
 	border-radius: 10px;
 	border: 3px solid #f3db7d;
 	background-color: aliceblue;
@@ -115,6 +119,9 @@ body {
 	display: flex;
 	justify-content: space-between;
 	background-color: #f3db7d;
+}
+.list__buttons{
+	display: flex;
 }
 .list__delete-button {
 }
@@ -131,6 +138,7 @@ body {
 .error {
 	color: red;
 }
-.done{
-
+.hidden{
+display: none;
 }
+
