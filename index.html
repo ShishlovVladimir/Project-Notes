@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="css/style.css" />
 		<title>Notes</title>
 	</head>
@@ -28,11 +29,33 @@
 						name="notedescription"
 						id="textarea"
 						placeholder="Напишите описание новой заметки..."
+						maxlength="500"
 					></textarea>
+					<fieldset class="fieldset">
+						<legend class="label">Выберите цвет заметки</legend>
+						<ul class="radio-list">
+							<li>
+								<input checked class="radio" type="radio" name="color" value="yellow" aria-label="yellow" />
+							</li>
+							<li>
+								<input class="radio" type="radio" name="color" value="red" aria-label="red" />
+							</li>
+							<li>
+								<input class="radio" type="radio" name="color" value="green" aria-label="green" />
+							</li>
+							<li>
+								<input class="radio" type="radio" name="color" value="blue" aria-label="blue" />
+							</li>
+							<li>
+								<input class="radio" type="radio" name="color" value="purple" aria-label="purple" />
+							</li>
+						</ul>
+					</fieldset>
 					<button class="form__button" type="submit">Добавить заметку</button>
 				</form>
+				<div class="notes__favorites filter-box"></div>
 				<ul class="notes__list list"></ul>
-				<div class="note__message-box"></div>
+				<div class="notes__message-box"></div>
 			</section>
 		</div>
 		<script src="js/script.js"></script>

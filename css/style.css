@@ -1,13 +1,14 @@
+
 /* ОБНУЛЕНИЕ СТИЛЕЙ */
-/* *,
-*::before,
-*::after {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-} */
+/* *,*/
+/**::before,*/
+/**::after {*/
+/*	margin: 0;*/
+/*	padding: 0;*/
+/*	border: 0;*/
+/*	-webkit-box-sizing: border-box;*/
+/*	box-sizing: border-box;*/
+/*}*/
 
 li {
 	list-style: none;
@@ -52,7 +53,7 @@ body {
 }
 
 .wrapper {
-	font-family: serif;
+	font-family: "Montserrat", sans-serif;
 	background-color: #72bdbd;
 	min-height: 100%;
 	overflow: hidden;
@@ -60,8 +61,6 @@ body {
 
 .notes {
 	padding: 0 40px;
-	display: flex;
-	flex-direction: column;
 	display: flex;
 	flex-direction: column;
 }
@@ -119,15 +118,20 @@ body {
 	display: flex;
 	justify-content: space-between;
 	background-color: #f3db7d;
+
 }
 .list__buttons{
 	display: flex;
 }
 .list__delete-button {
 }
-.list__favorites-button {
+.list__favorites-button img {
+
 }
 .list__title {
+	font-weight: 500;
+	line-height: 1;
+	color: #292515;
 }
 .list__description {
 }
@@ -142,3 +146,53 @@ body {
 display: none;
 }
 
+/*----------Радиокнопки------------------*/
+fieldset {
+	all: unset;
+}
+
+legend {
+	all: unset
+}
+
+.radio-list {
+	display: flex;
+	gap: 14px;
+	list-style: none;
+	padding-left: 0;
+}
+
+
+.radio {
+	appearance: none;
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background-color: green;
+}
+
+.radio[value="red"] {
+	background-color: #F37D7D;
+}
+
+.radio[value="green"] {
+	background-color: #C2F37D;
+}
+
+.radio[value="blue"] {
+	background-color: #7DE1F3;
+}
+
+.radio[value="yellow"] {
+	background-color: #F3DB7D;
+}
+
+.radio[value="purple"] {
+	background-color: #E77DF3;
+}
+
+.radio:checked {
+	border-color: white;
+	box-shadow: 0 0 0 3px white, /* Внутренняя обводка для создания промежутка */ 0 0 0 4.5px #007BFF; /* Внешняя обводка */
+}

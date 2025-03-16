@@ -1,11 +1,20 @@
-model = {
+const model = {
   notes: [],
 
-  addNotes(title, description) {
+  // colors: {
+  //   green: "#000",
+  //   blue: "#7DE1F3",
+  //   red: "#F37D7D",
+  //   yellow: "#F3DB7D",
+  //   purple: "#E77DF3",
+  // },
+
+  addNotes(title, description, color) {
+    //color = this.colors[color];
     const id = new Date().getTime();
     const favorites = false;
-    const newNote = { id, title, description, favorites };
-    this.notes.push(newNote);
+    const newNote = { id, title, description, favorites, color };
+    this.notes.unshift(newNote);
   },
 
   deleteNotes(noteId) {
@@ -37,12 +46,21 @@ const view = {
     const inputTitle = document.querySelector(".form__title");
     const inputDescription = document.querySelector(".form__description");
     const list = document.querySelector(".notes__list");
+    const radios = document.querySelectorAll(".radio");
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       const title = inputTitle.value;
       const description = inputDescription.value;
-      controller.addNotes(title, description);
+      let color;
+      for (let radio of radios) {
+        if (radio.checked) {
+          color = getComputedStyle(radio).backgroundColor;
+          console.log(color);
+        }
+      }
+
+      controller.addNotes(title, description, color);
     });
 
     list.addEventListener(`click`, function (event) {
@@ -65,16 +83,16 @@ const view = {
   renderNotes(notes) {
     const list = document.querySelector(".notes__list");
     let notesHTML = "";
-    const arrayElementsList = [];
+
     notes.forEach((note) => {
-      notesHTML = `
+      notesHTML += `
         <li id="${note.id}" class="list__item ">
-          <div class="list__item-header">
+          <div class="list__item-header" style="background-color: ${note.color}">
             <p class="list__title">${note.title}</p>
             <div class="list__buttons">
               <button class="list__favorites-button" type="button">
-                <img class="${note.favorites ? "hidden" : ""}"  src="../img/heart_desable.svg" alt="heart" >
-                <img class="${note.favorites ? "" : "hidden"}"  src="../img/heart_active.svg" alt="black heart">
+                <img class="${note.favorites ? "hidden" : ""}"  src="../img/heart_inactive.png" alt="heart" >
+                <img class="${note.favorites ? "" : "hidden"}"  src="../img/heart_active.png" alt="black heart">
               </button>
               <button class="list__delete-button" type="button"><img  src="../img/delete.svg" alt="heart" ></button>
             </div>
@@ -82,12 +100,10 @@ const view = {
           <p class="list__description">${note.description}</p>
         </li>
       `;
-      arrayElementsList.unshift(notesHTML);
     });
-    notesHTML = arrayElementsList.join("");
 
     list.innerHTML = notesHTML;
-    
+
     if (list.innerHTML === ``) {
       list.innerHTML = `У вас ещё нет ни одной заметки. Заполните поля выше и создайте свою первую заметку!`;
     }
@@ -101,7 +117,7 @@ const view = {
   },
 
   displayMessage(message, isError = false) {
-    const messageBox = document.querySelector(".note__message-box");
+    const messageBox = document.querySelector(".notes__message-box");
     messageBox.textContent = message;
 
     if (isError) {
@@ -125,12 +141,12 @@ const view = {
 };
 
 const controller = {
-  addNotes(title, description) {
+  addNotes(title, description, color) {
     if (title.length > 50) {
       view.displayMessage("Максимальная длина заголовка - 50 символов", true);
     } else {
       if (title.trim() !== "" && description.trim() !== "") {
-        model.addNotes(title, description);
+        model.addNotes(title, description, color);
         view.clearForm();
         view.renderNotes(model.notes);
         view.displayMessage("Заметка добавлена!");
