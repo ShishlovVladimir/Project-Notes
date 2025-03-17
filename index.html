@@ -3,7 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
 		<link rel="stylesheet" href="css/style.css" />
 		<title>Notes</title>
 	</head>
@@ -53,7 +56,10 @@
 					</fieldset>
 					<button class="form__button" type="submit">Добавить заметку</button>
 				</form>
-				<div class="notes__favorites filter-box"></div>
+				<div class="notes__checkbox-favorites favorites-checkbox">
+					<input class="favorites-checkbox__input" id="1" type="checkbox" name="favorites" />
+					<label class="favorites-checkbox__label" for="1">Показать только избранные заметки</label>
+				</div>
 				<ul class="notes__list list"></ul>
 				<div class="notes__message-box"></div>
 			</section>

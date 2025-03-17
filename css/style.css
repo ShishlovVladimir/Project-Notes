@@ -1,4 +1,3 @@
-
 /* ОБНУЛЕНИЕ СТИЛЕЙ */
 /* *,*/
 /**::before,*/
@@ -53,7 +52,7 @@ body {
 }
 
 .wrapper {
-	font-family: "Montserrat", sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	background-color: #72bdbd;
 	min-height: 100%;
 	overflow: hidden;
@@ -96,13 +95,15 @@ body {
 .form__button {
 	width: 200px;
 }
-
-
-/*-----------Классы на список------------------*/
-.notes__list {
+.favorites-checkbox {
+	display: inline-flex;
+	align-items: center;
 
 }
-.list{
+/*-----------Классы на список------------------*/
+.notes__list {
+}
+.list {
 	display: flex;
 	gap: 20px;
 }
@@ -111,22 +112,31 @@ body {
 	flex-direction: column;
 	flex: 0 0 250px;
 	border-radius: 10px;
-	border: 3px solid #f3db7d;
 	background-color: aliceblue;
+	box-shadow: 0 4px 8px 0 rgba(11, 12, 13, 0.08), 0 8px 16px 0 rgba(11, 12, 13, 0.04),
+		0 1px 2px 0 rgba(11, 12, 13, 0.08);
 }
 .list__item-header {
 	display: flex;
 	justify-content: space-between;
-	background-color: #f3db7d;
-
+	padding: 0 12px;
+	border-radius: 10px 10px 0 0;
 }
-.list__buttons{
+.list__title {
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 1;
+	color: #292515;
+}
+.list__buttons {
 	display: flex;
+	gap: 12px;
 }
 .list__delete-button {
+	cursor: pointer;
 }
-.list__favorites-button img {
-
+.list__favorites-button {
+	cursor: pointer;
 }
 .list__title {
 	font-weight: 500;
@@ -142,8 +152,8 @@ body {
 .error {
 	color: red;
 }
-.hidden{
-display: none;
+.hidden {
+	display: none;
 }
 
 /*----------Радиокнопки------------------*/
@@ -152,7 +162,7 @@ fieldset {
 }
 
 legend {
-	all: unset
+	all: unset;
 }
 
 .radio-list {
@@ -162,7 +172,6 @@ legend {
 	padding-left: 0;
 }
 
-
 .radio {
 	appearance: none;
 	display: inline-block;
@@ -170,29 +179,31 @@ legend {
 	height: 24px;
 	border-radius: 50%;
 	background-color: green;
+	cursor: pointer;
 }
 
-.radio[value="red"] {
-	background-color: #F37D7D;
+.radio[value='red'] {
+	background-color: #f37d7d;
 }
 
-.radio[value="green"] {
-	background-color: #C2F37D;
+.radio[value='green'] {
+	background-color: #c2f37d;
 }
 
-.radio[value="blue"] {
-	background-color: #7DE1F3;
+.radio[value='blue'] {
+	background-color: #7de1f3;
 }
 
-.radio[value="yellow"] {
-	background-color: #F3DB7D;
+.radio[value='yellow'] {
+	background-color: #f3db7d;
 }
 
-.radio[value="purple"] {
-	background-color: #E77DF3;
+.radio[value='purple'] {
+	background-color: #e77df3;
 }
 
 .radio:checked {
 	border-color: white;
-	box-shadow: 0 0 0 3px white, /* Внутренняя обводка для создания промежутка */ 0 0 0 4.5px #007BFF; /* Внешняя обводка */
+	box-shadow: 0 0 0 3px white, /* Внутренняя обводка для создания промежутка */ 0 0 0 4.5px #007bff; /* Внешняя обводка */
+	transition: all 0.3s ease 0s;
 }
