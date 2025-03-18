@@ -1,13 +1,12 @@
 /* ОБНУЛЕНИЕ СТИЛЕЙ */
-/* *,*/
-/**::before,*/
-/**::after {*/
-/*	margin: 0;*/
-/*	padding: 0;*/
-/*	border: 0;*/
-/*	-webkit-box-sizing: border-box;*/
-/*	box-sizing: border-box;*/
-/*}*/
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	box-sizing: border-box;
+}
 
 li {
 	list-style: none;
@@ -22,7 +21,7 @@ a:hover {
 	text-decoration: none;
 }
 
-/* h1,
+h1,
 h2,
 h3,
 h4,
@@ -30,7 +29,7 @@ h5,
 h6 {
 	font-weight: inherit;
 	font-size: inherit;
-} */
+}
 
 img {
 	vertical-align: top;
@@ -56,41 +55,103 @@ body {
 	background-color: #72bdbd;
 	min-height: 100%;
 	overflow: hidden;
+	position: relative;
+	padding: 0 15px;
+}
+
+[class*='__container'] {
+	max-width: 1152px;
+	/* padding: 0px 15px; */
+	margin: 0 auto;
 }
 
 .notes {
-	padding: 0 40px;
 	display: flex;
 	flex-direction: column;
 }
 
+/* -----------Header------------------ */
 .notes-header {
 	display: flex;
-	gap: 50px;
+	justify-content: space-between;
+	align-items: center;
+	padding: 18px 0;
+	background-color: #fff;
+	box-shadow: 0 3px 3px 0 rgba(11, 12, 13, 0.16), 0 0 1px 0 rgba(11, 12, 13, 0.24);
+	margin: 0 0 24px 0;
 }
-.notes-header__title {
+.notes-header__icon {
 }
 .notes-header__text {
 	font-weight: 500;
 	line-height: 1.5;
-	font-size: 18px;
+	color: #000;
+	position: relative;
+}
+.notes-header__text::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: -36px;
+	background: url('../img/Header/list.svg') 0 0 no-repeat;
 }
 .notes-header__count {
-	font-size: 20px;
+	font-weight: 700;
+}
+
+/* -----------Main------------------ */
+.main {
+	background-color: #fafafc;
 }
 .notes__form {
 }
 .form {
 	display: flex;
 	flex-direction: column;
+	box-shadow: 0 8px 12px 0 rgba(11, 12, 13, 0.08), 0 16px 24px 0 rgba(11, 12, 13, 0.04),
+		0 1px 2px 0 rgba(11, 12, 13, 0.08);
+	background: #fff;
+	padding: 24px;
 }
 .form__label {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 2;
+	color: #919191;
+}
+.form__title,
+.form__description {
+	font-family: 'Montserrat', sans-serif;
+	border: 1px solid #e8e8e8;
+	border-radius: 10px;
+	padding: 6px 12px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 1.71429;
+	color: #000;
 }
 .form__title {
-	width: 250px;
+	max-width: 344px;
+	min-height: 36px;
+	margin: 0 0 12px 0;
 }
 .form__description {
-	width: 300px;
+	flex: 1 0 84px;
+}
+.form__body {
+	display: flex;
+	gap: 24px;
+}
+.form__item-textarea {
+	display: flex;
+	flex-direction: column;
+	flex: 0 1 848px;
+}
+.form__body-add-notes {
+	display: flex;
+	flex-direction: column;
 }
 .form__button {
 	width: 200px;
@@ -98,7 +159,6 @@ body {
 .favorites-checkbox {
 	display: inline-flex;
 	align-items: center;
-
 }
 /*-----------Классы на список------------------*/
 .notes__list {
@@ -145,12 +205,60 @@ body {
 }
 .list__description {
 }
+
 /*-------Классы на сообщения-----------------*/
+
+.notes__message-box {
+	position: absolute;
+	width: 100%;
+	bottom: 72px;
+	right: 64px;
+	border-radius: 10px;
+	display: inline-flex;
+	padding: 12px 24px;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 1.71429;
+	color: #fff;
+	/* justify-content: flex-end; */
+	flex-direction: column;
+	gap: 5px;
+}
+
+/* .notes__message-box-wrapper {
+	position: absolute;
+	width: 100%;
+	bottom: 72px;
+	right: 64px;
+	border-radius: 10px;
+	display: inline-flex;
+	padding: 12px 24px;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 1.71429;
+	color: #fff;
+	justify-content: flex-end;
+} */
+
+/* .notes__message-box {
+	gap: 20px;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+} */
+
+.message-box {
+	border-radius: 10px;
+	padding: 10px;
+	box-shadow: 0 8px 12px 0 rgba(11, 12, 13, 0.08), 0 16px 24px 0 rgba(11, 12, 13, 0.04),
+		0 1px 2px 0 rgba(11, 12, 13, 0.08);
+}
+
 .success {
-	color: green;
+	background: #47b27d;
 }
 .error {
-	color: red;
+	background: #f23d5b;
 }
 .hidden {
 	display: none;
@@ -204,6 +312,6 @@ legend {
 
 .radio:checked {
 	border-color: white;
-	box-shadow: 0 0 0 3px white, /* Внутренняя обводка для создания промежутка */ 0 0 0 4.5px #007bff; /* Внешняя обводка */
+	box-shadow: 0 0 0 3px white,  0 0 0 4.5px #007bff;
 	transition: all 0.3s ease 0s;
 }

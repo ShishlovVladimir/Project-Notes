@@ -12,56 +12,73 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<section class="notes">
+			<section class="notes notes__container">
 				<header class="notes-header">
-					<h1 class="notes-header__title">NOTES</h1>
+					<h1 class="notes-header__icon"><img src="img/Header/📝Notes.png" alt="" /></h1>
 					<p class="notes-header__text">Всего заметок: <span class="notes-header__count count"></span></p>
 				</header>
-				<form class="notes__form form" action="#">
-					<label class="form__label" for="notetitle">Название заметки</label>
-					<input
-						class="form__title"
-						type="text"
-						name="notetitle"
-						id="notetitle"
-						placeholder="Напишите название новой заметки..."
-					/>
-					<label class="form__label" for="textarea">Описание новой заметки</label>
-					<textarea
-						class="form__description"
-						name="notedescription"
-						id="textarea"
-						placeholder="Напишите описание новой заметки..."
-						maxlength="500"
-					></textarea>
-					<fieldset class="fieldset">
-						<legend class="label">Выберите цвет заметки</legend>
-						<ul class="radio-list">
-							<li>
-								<input checked class="radio" type="radio" name="color" value="yellow" aria-label="yellow" />
-							</li>
-							<li>
-								<input class="radio" type="radio" name="color" value="red" aria-label="red" />
-							</li>
-							<li>
-								<input class="radio" type="radio" name="color" value="green" aria-label="green" />
-							</li>
-							<li>
-								<input class="radio" type="radio" name="color" value="blue" aria-label="blue" />
-							</li>
-							<li>
-								<input class="radio" type="radio" name="color" value="purple" aria-label="purple" />
-							</li>
-						</ul>
-					</fieldset>
-					<button class="form__button" type="submit">Добавить заметку</button>
-				</form>
-				<div class="notes__checkbox-favorites favorites-checkbox">
-					<input class="favorites-checkbox__input" id="1" type="checkbox" name="favorites" />
-					<label class="favorites-checkbox__label" for="1">Показать только избранные заметки</label>
-				</div>
-				<ul class="notes__list list"></ul>
-				<div class="notes__message-box"></div>
+				<main class="main">
+					<form class="notes__form form" action="#">
+						<label class="form__label" for="notetitle">Название заметки</label>
+						<input
+							class="form__title"
+							type="text"
+							name="notetitle"
+							id="notetitle"
+							placeholder="Напишите название новой заметки..."
+						/>
+						<div class="form__body">
+							<div class="form__item-textarea">
+								<label class="form__label" for="textarea">Описание новой заметки</label>
+								<textarea
+									class="form__description"
+									name="notedescription"
+									id="textarea"
+									placeholder="Напишите описание новой заметки..."
+									maxlength="500"
+								></textarea>
+							</div>
+							<div class="form__body-add-notes">
+								<fieldset class="fieldset">
+									<legend class="form__label">Выберите цвет заметки</legend>
+									<ul class="radio-list">
+										<li>
+											<input
+												checked
+												class="radio"
+												type="radio"
+												name="color"
+												value="yellow"
+												aria-label="yellow"
+											/>
+										</li>
+										<li>
+											<input class="radio" type="radio" name="color" value="red" aria-label="red" />
+										</li>
+										<li>
+											<input class="radio" type="radio" name="color" value="green" aria-label="green" />
+										</li>
+										<li>
+											<input class="radio" type="radio" name="color" value="blue" aria-label="blue" />
+										</li>
+										<li>
+											<input class="radio" type="radio" name="color" value="purple" aria-label="purple" />
+										</li>
+									</ul>
+								</fieldset>
+								<button class="form__button" type="submit">Добавить заметку</button>
+							</div>
+						</div>
+					</form>
+					<div class="notes__checkbox-favorites favorites-checkbox">
+						<input class="favorites-checkbox__input" id="1" type="checkbox" name="favorites" />
+						<label class="favorites-checkbox__label" for="1">Показать только избранные заметки</label>
+					</div>
+					<ul class="notes__list list"></ul>
+					<div class="notes__message-box-wrapper">
+						<div class="notes__message-box"></div>
+					</div>
+				</main>
 			</section>
 		</div>
 		<script src="js/script.js"></script>
