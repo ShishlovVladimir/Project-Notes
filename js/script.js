@@ -1,6 +1,6 @@
 const MOCK_NOTES = [
   {
-    id: 1,
+    id: `1`,
     title: "Работа с формами",
     content:
       "К определённым полям формы можно обратиться через form.elements по значению, указанному в атрибуте name",
@@ -8,16 +8,16 @@ const MOCK_NOTES = [
     isFavorite: false,
   },
   {
-    id: 2,
+    id: `2`,
     title: "Отдых",
-    content: "fdg;kdfgfdgdfgdgdgdfgdgdfgdg gdfg d  gfd gdg df gd dg d d ",
+    content: "Мама мыла раму ",
     color: "green",
     isFavorite: false,
   },
 ];
 
 const model = {
-  notes: MOCK_NOTES,
+  notes: [],
   notesFavorites: [],
 
   isShowOnlyFavorite: false,
@@ -25,17 +25,15 @@ const model = {
     this.isShowOnlyFavorite = !this.isShowOnlyFavorite;
   },
   updateNotesFavorites() {
-    console.log(this.isShowOnlyFavorite);
     this.toggleShowOnlyFavorite();
     if (this.isShowOnlyFavorite) {
       this.notesFavorites = this.notes.filter((note) => note.favorites);
       //console.log(this.notesFavorites);
       view.renderNotes(this.notesFavorites);
-      view.renderNotesCount(this.notes);
     } else {
       view.renderNotes(this.notes);
-      view.renderNotesCount(this.notes);
     }
+    view.renderNotesCount(this.notes);
   },
 
   addNotes(title, description, color) {
@@ -46,7 +44,14 @@ const model = {
   },
 
   deleteNotes(noteId) {
-    this.notes = this.notes.filter((note) => note.id !== +noteId);
+    if (this.isShowOnlyFavorite) {
+      this.notesFavorites = this.notesFavorites.filter(
+        (note) => note.id !== +noteId,
+      );
+      this.notes = this.notes.filter((note) => note.id !== +noteId);
+    } else {
+      this.notes = this.notes.filter((note) => note.id !== +noteId);
+    }
   },
 
   addNotesInFavorites(noteId) {
@@ -133,7 +138,7 @@ const view = {
 
     list.innerHTML = notesHTML;
 
-    if (list.innerHTML === ``) {
+    if (model.notes.length === 0) {
       list.innerHTML = `У вас ещё нет ни одной заметки. Заполните поля выше и создайте свою первую заметку!`;
       favoritesCheckbox.classList.add("hidden");
     } else {
@@ -185,6 +190,9 @@ const controller = {
         model.addNotes(title, description, color);
         view.clearForm();
         view.renderNotes(model.notes);
+        if (model.isShowOnlyFavorite) {
+          view.renderNotes(model.notesFavorites);
+        }
         view.renderNotesCount(model.notes);
         view.displayMessage("Заметка добавлена!");
       } else {
@@ -192,16 +200,21 @@ const controller = {
       }
     }
   },
-  deleteNotes(noteId) {
-    model.deleteNotes(noteId);
-    view.displayMessage("Заметка удалена");
-    view.renderNotes(model.notes);
-    view.renderNotesCount(model.notes);
-  },
 
   addNotesInFavorites(noteId) {
     model.addNotesInFavorites(noteId);
     view.renderNotes(model.notes);
+  },
+
+  deleteNotes(noteId) {
+    model.deleteNotes(noteId);
+    view.displayMessage("Заметка удалена");
+    if (model.isShowOnlyFavorite) {
+      view.renderNotes(model.notesFavorites);
+    } else {
+      view.renderNotes(model.notes);
+    }
+    view.renderNotesCount(model.notes);
   },
 };
 
