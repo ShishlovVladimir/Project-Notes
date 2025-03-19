@@ -1,10 +1,11 @@
 body {
 	line-height: 1;
+	font-family: 'Montserrat', sans-serif;
 }
 
 .wrapper {
-	font-family: 'Montserrat', sans-serif;
-	/* background-color: #72bdbd; */
+	/* font-family: 'Montserrat', sans-serif; */
+
 	background-color: #fafafc;
 	min-height: 100%;
 	overflow: hidden;
@@ -163,6 +164,8 @@ legend {
 	box-shadow: 0 0 0 3px white, 0 0 0 4px #007bff;
 	transition: all 0.3s ease 0s;
 }
+
+/* ----------Button Add-------------- */
 .button-add-note {
 	display: inline-flex;
 	font-family: 'Montserrat', sans-serif;
@@ -172,12 +175,15 @@ legend {
 	line-height: 1.5;
 	color: #fff;
 	border-radius: 10px;
-	padding: 6px 24px 6px 56px;
+	padding: 6px 24px;
+	/* padding: 6px 24px 6px 56px; */
 	background-color: #457cdc;
 	cursor: pointer;
+
+	gap: 8px;
 	transition: all 0.3s ease 0s;
 }
-.button-add-note::before {
+/* .button-add-note::before {
 	content: '';
 	position: absolute;
 	width: 100%;
@@ -187,14 +193,19 @@ legend {
 	background: url('../img/icons/plus.svg') 0 0 no-repeat;
 
 	transition: all 0.3s ease 0s;
-}
-
-.button-add-note:hover {
-	box-shadow: 0 0 15px 0 #3498db inset, 0 0 10px 1px #3498db;
-}
-/* .button-add-note:hover::before {
-	transform: translate(24px, -5px) rotate(145deg);
 } */
+.button-icon {
+	transition: all 0.5s ease 0s;
+}
+.button-add-note:hover .button-icon {
+	transform: rotate(270deg);
+}
+.button-add-note:hover {
+	background-color: #5891f5;
+}
+.button-add-note:hover:active {
+	transform: scale(0.95);
+}
 
 /* ---------Checkbox favorites------------- */
 .favorites-checkbox {
@@ -218,14 +229,18 @@ legend {
 .list__item {
 	display: flex;
 	min-width: 368px;
-
 	flex-direction: column;
 	flex: 0 0 250px;
 	border-radius: 10px;
 	background-color: aliceblue;
 	box-shadow: 0 4px 8px 0 rgba(11, 12, 13, 0.08), 0 8px 16px 0 rgba(11, 12, 13, 0.04),
 		0 1px 2px 0 rgba(11, 12, 13, 0.08);
+
+	transition: all 0.3s ease 0s;
 }
+/* .list__item:hover {
+	transform: scale(1.01);
+} */
 .list__item-header {
 	display: flex;
 	justify-content: space-between;
@@ -244,6 +259,10 @@ legend {
 }
 .list__delete-button {
 	cursor: pointer;
+}
+.list__delete-button:hover {
+	transform: scale(1.2);
+	transition: all 0.3s ease 0s;
 }
 .list__favorites-button {
 	cursor: pointer;
@@ -288,6 +307,12 @@ legend {
 }
 .hidden {
 	display: none;
+}
+.image {
+	transition: all 0.3s ease 0s;
+}
+.image:hover {
+	transform: scale(1.2);
 }
 .list-message {
 	display: flex;
