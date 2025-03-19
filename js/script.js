@@ -1,21 +1,3 @@
-// const MOCK_NOTES = [
-//   {
-//     id: `1`,
-//     title: "Работа с формами",
-//     content:
-//       "К определённым полям формы можно обратиться через form.elements по значению, указанному в атрибуте name",
-//     color: "yellow",
-//     isFavorite: false,
-//   },
-//   {
-//     id: `2`,
-//     title: "Отдых",
-//     content: "Мама мыла раму ",
-//     color: "green",
-//     isFavorite: false,
-//   },
-// ];
-
 const model = {
 	notes: [],
 	notesFavorites: [],
@@ -28,7 +10,6 @@ const model = {
 		this.toggleShowOnlyFavorite();
 		if (this.isShowOnlyFavorite) {
 			this.notesFavorites = this.notes.filter((note) => note.favorites);
-			//console.log(this.notesFavorites);
 			view.renderNotes(this.notesFavorites);
 		} else {
 			view.renderNotes(this.notes);
@@ -68,8 +49,8 @@ const view = {
 		this.renderNotesCount(model.notes);
 
 		const form = document.querySelector('.notes__form');
-		const inputTitle = document.querySelector('.form__title');
-		const inputDescription = document.querySelector('.form__description');
+		const inputTitle = document.querySelector('.form__title-input');
+		const inputDescription = document.querySelector('.form__description-input');
 		const list = document.querySelector('.notes__list');
 		const radios = document.querySelectorAll('.radio');
 		const favoritesCheckboxInput = document.querySelector('.favorites-checkbox__input');
@@ -113,7 +94,6 @@ const view = {
 		const favoritesCheckbox = document.querySelector('.favorites-checkbox');
 		const list = document.querySelector('.notes__list');
 		let notesHTML = '';
-		//console.log(`render`, notes);
 		notes.forEach((note) => {
 			notesHTML += `
         <li id="${note.id}" class="list__item ">
@@ -121,10 +101,10 @@ const view = {
             <p class="list__title">${note.title}</p>
             <div class="list__buttons">
               <div class="list__favorites-button">
-                <img class="${note.favorites ? 'hidden' : ''}"  src="../img/heart_desable.svg" alt="heart" >
-                <img class="${note.favorites ? '' : 'hidden'}"  src="../img/heart_active.svg" alt="black heart">
+                <img class="${note.favorites ? 'hidden' : ''}"  src="../img/heart-inactive16.svg" alt="heart" >
+                <img class="${note.favorites ? '' : 'hidden'}"  src="../img/heart-active16.svg" alt="black heart">
               </div>
-              <div class="list__delete-button" ><img  src="../img/delete.svg" alt="heart" ></div>
+              <div class="list__delete-button" ><img  src="../img/delete16.svg" alt="heart" ></div>
             </div>
           </div>
           <p class="list__description">${note.description}</p>
@@ -133,13 +113,16 @@ const view = {
 		});
 
 		list.innerHTML = notesHTML;
+		list.classList.remove('list-message');
 
 		if (model.notes.length === 0) {
-			list.innerHTML = `У вас ещё нет ни одной заметки. Заполните поля выше и создайте свою первую заметку!`;
+			list.classList.add('list-message');
+			list.innerHTML = `У вас ещё нет ни одной заметки😔.<br> Заполните поля выше и создайте свою первую заметку📝!`;
 			favoritesCheckbox.classList.add('hidden');
 		} else {
 			if (model.isShowOnlyFavorite && model.notesFavorites.length === 0) {
-				list.innerHTML = `У вас нет избранных заметок`;
+				list.classList.add('list-message');
+				list.innerHTML = `У вас нет избранных заметок 😜`;
 			}
 			favoritesCheckbox.classList.remove('hidden');
 		}
@@ -156,46 +139,25 @@ const view = {
 		countNotes.textContent = count.toString();
 	},
 
-	// displayMessage(message, isError) {
-	// 	const messageBox = document.querySelector('.notes__message-box');
-
-	// 	const myNewMessageBox = document.createElement('div');
-
-	// 	myNewMessageBox.textContent = message;
-	// 	myNewMessageBox.classList.add('message-box');
-	// 	messageBox.appendChild(myNewMessageBox);
-
-	// 	if (isError) {
-	// 		myNewMessageBox.classList.remove('success');
-	// 		myNewMessageBox.classList.add('error');
-	// 	} else {
-	// 		myNewMessageBox.classList.remove('error');
-	// 		myNewMessageBox.classList.add('success');
-	// 	}
-	// 	setTimeout(() => {
-	// 		myNewMessageBox.remove();
-	// 	}, 3000);
-	// },
-
 	displayMessage(message, isError = false) {
 		const messageBox = document.querySelector('.notes__message-box');
 
-		const myNewMessageBox = document.createElement('div');
+		const newMessage = document.createElement('div');
 
-		myNewMessageBox.textContent = message;
-		myNewMessageBox.classList.add('message-box');
-		myNewMessageBox.classList.add(isError ? 'error' : 'success');
+		newMessage.textContent = message;
+		newMessage.classList.add('new-message');
+		newMessage.classList.add(isError ? 'error' : 'success');
 
-		messageBox.appendChild(myNewMessageBox);
+		messageBox.appendChild(newMessage);
 
 		setTimeout(() => {
-			myNewMessageBox.remove();
+			newMessage.remove();
 		}, 3000);
 	},
 
 	clearForm() {
-		const inputTitle = document.querySelector('.form__title');
-		const inputDescription = document.querySelector('.form__description');
+		const inputTitle = document.querySelector('.form__title-input');
+		const inputDescription = document.querySelector('.form__description-input');
 		inputTitle.value = '';
 		inputDescription.value = '';
 	},
@@ -204,7 +166,7 @@ const view = {
 const controller = {
 	addNotes(title, description, color) {
 		if (title.length > 50) {
-			view.displayMessage('Максимальная длина заголовка - 50 символов', true);
+			view.displayMessage('Максимальная длина заголовка - 50 символов!', true);
 		} else {
 			if (title.trim() !== '' && description.trim() !== '') {
 				model.addNotes(title, description, color);
@@ -228,7 +190,7 @@ const controller = {
 
 	deleteNotes(noteId) {
 		model.deleteNotes(noteId);
-		view.displayMessage('Заметка удалена', false);
+		view.displayMessage('Заметка удалена!', false);
 
 		if (model.isShowOnlyFavorite) {
 			view.renderNotes(model.notesFavorites);

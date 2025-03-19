@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/_null.css" />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
 			rel="stylesheet"
@@ -12,16 +13,18 @@
 	</head>
 	<body>
 		<div class="wrapper">
-			<section class="notes notes__container">
-				<header class="notes-header">
-					<h1 class="notes-header__icon"><img src="img/Header/📝Notes.png" alt="" /></h1>
-					<p class="notes-header__text">Всего заметок: <span class="notes-header__count count"></span></p>
+			<section class="notes">
+				<header class="header">
+					<header class="notes-header __container">
+						<h1 class="notes-header__icon"><img src="img/Header/📝Notes.png" alt="" /></h1>
+						<p class="notes-header__text">Всего заметок: <span class="notes-header__count count"></span></p>
+					</header>
 				</header>
-				<main class="main">
+				<main class="main __container">
 					<form class="notes__form form" action="#">
 						<label class="form__label" for="notetitle">Название заметки</label>
 						<input
-							class="form__title"
+							class="form__title-input"
 							type="text"
 							name="notetitle"
 							id="notetitle"
@@ -31,7 +34,7 @@
 							<div class="form__item-textarea">
 								<label class="form__label" for="textarea">Описание новой заметки</label>
 								<textarea
-									class="form__description"
+									class="form__description-input"
 									name="notedescription"
 									id="textarea"
 									placeholder="Напишите описание новой заметки..."
@@ -39,8 +42,8 @@
 								></textarea>
 							</div>
 							<div class="form__body-add-notes">
-								<fieldset class="fieldset">
-									<legend class="form__label">Выберите цвет заметки</legend>
+								<fieldset class="form-radio fieldset">
+									<legend class="fieldset-legend">Выберите цвет заметки</legend>
 									<ul class="radio-list">
 										<li>
 											<input
@@ -66,7 +69,7 @@
 										</li>
 									</ul>
 								</fieldset>
-								<button class="form__button" type="submit">Добавить заметку</button>
+								<button class="button-add-note" type="submit">Добавить заметку</button>
 							</div>
 						</div>
 					</form>
@@ -75,9 +78,10 @@
 						<label class="favorites-checkbox__label" for="1">Показать только избранные заметки</label>
 					</div>
 					<ul class="notes__list list"></ul>
-					<div class="notes__message-box-wrapper">
+					<div class="notes__message-box"></div>
+					<!-- <div class="notes__message-box-wrapper">
 						<div class="notes__message-box"></div>
-					</div>
+					</div> -->
 				</main>
 			</section>
 		</div>
