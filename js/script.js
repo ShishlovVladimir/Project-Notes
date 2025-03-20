@@ -122,7 +122,7 @@ const view = {
     list.innerHTML = notesHTML;
     list.classList.remove("list-message");
 
-    if (model.notes.length === 0) {
+    if (model.notes.length === 0 && model.isShowOnlyFavorite === false) {
       list.classList.add("list-message");
       list.innerHTML = `У вас ещё нет ни одной заметки😔.<br> Заполните поля выше и создайте свою первую заметку📝!`;
       favoritesCheckbox.classList.add("hidden");
