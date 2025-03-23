@@ -100,10 +100,11 @@ const view = {
   renderNotes(notes) {
     const favoritesCheckbox = document.querySelector(".favorites-checkbox");
     const list = document.querySelector(".notes__list");
+
     let notesHTML = "";
     notes.forEach((note) => {
       notesHTML += `
-        <li id="${note.id}" class="list__item ">
+        <li id="${note.id}" class="list__item">
           <div class="list__item-header" style="background-color: ${note.color}">
             <p class="list__title">${note.title}</p>
             <div class="list__buttons">
@@ -146,7 +147,7 @@ const view = {
     countNotes.textContent = count.toString();
   },
 
-  displayMessage(message, isError = false) {
+  displayMessage(message, isError) {
     const messageBox = document.querySelector(".notes__message-box");
 
     const newMessage = document.createElement("div");

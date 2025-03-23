@@ -7,6 +7,7 @@ body {
 	/* font-family: 'Montserrat', sans-serif; */
 
 	background-color: #fafafc;
+	/*background-color: #333;*/
 	min-height: 100%;
 	overflow: hidden;
 	position: relative;
@@ -59,6 +60,7 @@ body {
 /* -----------Main------------------ */
 .main {
 	background-color: #fafafc;
+
 }
 .notes__form {
 	margin: 0 0 24px 0;
@@ -88,6 +90,18 @@ body {
 	font-size: 14px;
 	line-height: 1.71429;
 	color: #000;
+
+	transition: all 0.3s ease 0s;
+}
+.form__title-input:focus::placeholder,
+.form__description-input:focus::placeholder {
+	transform: translate(-100%,0px);
+	opacity: 0;
+
+}
+.form__title-input::placeholder,
+.form__description-input::placeholder {
+	transition: all 0.5s ease 0s;
 }
 .form__title-input {
 	max-width: 344px;
@@ -227,6 +241,8 @@ legend {
 	flex-wrap: wrap;
 }
 .list__item {
+	/*position: relative;*/
+	/*top: 0;*/
 	display: flex;
 	min-width: 368px;
 	flex-direction: column;
@@ -238,9 +254,10 @@ legend {
 
 	transition: all 0.3s ease 0s;
 }
-/* .list__item:hover {
-	transform: scale(1.01);
-} */
+.list__item:hover {
+	transform: translateY(-2px);
+}
+
 .list__item-header {
 	display: flex;
 	justify-content: space-between;
