@@ -7,14 +7,7 @@ const model = {
     this.isShowOnlyFavorite = !this.isShowOnlyFavorite;
   },
   updateNotesFavorites() {
-    this.toggleShowOnlyFavorite();
-    if (this.isShowOnlyFavorite) {
-      this.notesFavorites = this.notes.filter((note) => note.favorites);
-      view.renderNotes(this.notesFavorites);
-    } else {
-      view.renderNotes(this.notes);
-    }
-    view.renderNotesCount(this.notes);
+    this.notesFavorites = this.notes.filter((note) => note.favorites);
   },
 
   addNotes(title, description, color) {
@@ -25,14 +18,7 @@ const model = {
   },
 
   deleteNotes(noteId) {
-    if (this.isShowOnlyFavorite) {
-      this.notesFavorites = this.notesFavorites.filter(
-        (note) => note.id !== +noteId,
-      );
-      this.notes = this.notes.filter((note) => note.id !== +noteId);
-    } else {
-      this.notes = this.notes.filter((note) => note.id !== +noteId);
-    }
+    this.notes = this.notes.filter((note) => note.id !== +noteId);
   },
 
   addNotesInFavorites(noteId) {
@@ -77,10 +63,7 @@ const view = {
       if (event.target.closest(".list__delete-button")) {
         const elementList = event.target.closest(".list__item");
         const noteId = elementList.id;
-        let answer = confirm(`Вы действительно хотите удалить заметку?`);
-        if (answer) {
-          controller.deleteNotes(noteId);
-        }
+        view.confirm(noteId);
       }
     });
 
@@ -93,7 +76,7 @@ const view = {
     });
 
     favoritesCheckboxInput.addEventListener(`click`, function () {
-      model.updateNotesFavorites();
+      controller.updateNotesFavorites();
     });
   },
 
@@ -169,6 +152,20 @@ const view = {
     inputTitle.value = "";
     inputDescription.value = "";
   },
+
+  confirm(noteId) {
+    const divConfirm = document.createElement("div");
+    divConfirm.className = "confirm";
+    divConfirm.innerHTML = `Вы уверены?<br><div class="confirm-buttons"><button id="yes">Да</button><br><button id="no">Нет</button></div>`;
+    document.body.appendChild(divConfirm);
+    document.querySelector("#yes").onclick = () => {
+      controller.deleteNotes(noteId);
+      divConfirm.remove();
+    };
+    document.querySelector("#no").onclick = () => {
+      divConfirm.remove();
+    };
+  },
 };
 
 const controller = {
@@ -179,9 +176,8 @@ const controller = {
       if (title.trim() !== "" && description.trim() !== "") {
         model.addNotes(title, description, color);
         view.clearForm();
-        view.renderNotes(model.notes);
-        if (model.isShowOnlyFavorite) {
-          view.renderNotes(model.notesFavorites);
+        if (model.isShowOnlyFavorite === false) {
+          view.renderNotes(model.notes);
         }
         view.renderNotesCount(model.notes);
         view.displayMessage("Заметка добавлена!", false);
@@ -199,8 +195,19 @@ const controller = {
   deleteNotes(noteId) {
     model.deleteNotes(noteId);
     view.displayMessage("Заметка удалена!", false);
-
     if (model.isShowOnlyFavorite) {
+      model.updateNotesFavorites();
+      view.renderNotes(model.notesFavorites);
+    } else {
+      view.renderNotes(model.notes);
+    }
+    view.renderNotesCount(model.notes);
+  },
+
+  updateNotesFavorites() {
+    model.toggleShowOnlyFavorite();
+    if (model.isShowOnlyFavorite) {
+      model.updateNotesFavorites();
       view.renderNotes(model.notesFavorites);
     } else {
       view.renderNotes(model.notes);
